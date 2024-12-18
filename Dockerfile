@@ -1,6 +1,6 @@
 # Default Elasticsearch version to use
 ARG ELASTICSEARCH_VERSION=8.15.0
-ARG KIBANA_VERSION=8.15.0
+# ARG KIBANA_VERSION=8.15.0
 
 # Use the Elasticsearch image with the specified version
 FROM elasticsearch:${ELASTICSEARCH_VERSION}
@@ -30,17 +30,3 @@ USER 1000:0
 # Run our new entrypoint
 ENTRYPOINT ["/usr/local/bin/entrypoint-new.sh"]
 
-
-# Use the Kibana image with the specified version
-FROM kibana:${KIBANA_VERSION} as kibana
-
-# Set the Kibana password
-ENV ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-ENV ELASTICSEARCH_USERNAME=elastic
-ENV ELASTICSEARCH_PASSWORD=sqfmiofjuéç!èàyèfhsqmdh
-
-# Expose Kibana port
-EXPOSE 5601
-
-# Run Kibana
-CMD ["kibana"]
